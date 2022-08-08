@@ -1,0 +1,200 @@
+1	all		synonym
+1	root		scientific name
+2	Bacteria	Bacteria <bacteria>	scientific name
+2	bacteria		blast name
+2	eubacteria		genbank common name
+2	Monera	Monera <bacteria>	in-part
+2	Procaryotae	Procaryotae <bacteria>	in-part
+2	Prokaryotae	Prokaryotae <bacteria>	in-part
+2	Prokaryota	Prokaryota <bacteria>	in-part
+2	prokaryote	prokaryote <bacteria>	in-part
+2	prokaryotes	prokaryotes <bacteria>	in-part
+6	Azorhizobium Dreyfus et al. 1988 emend. Lang et al. 2013		authority
+6	Azorhizobium		scientific name
+7	Azorhizobium caulinodans Dreyfus et al. 1988		authority
+7	Azorhizobium caulinodans		scientific name
+7	Azotirhizobium caulinodans		equivalent name
+9	Acyrthosiphon pisum symbiont P		includes
+9	Buchnera aphidicola Munson et al. 1991		authority
+9	Buchnera aphidicola		scientific name
+9	primary endosymbiont of Schizaphis graminum		includes
+10	Cellvibrio (ex Winogradsky 1929) Blackall et al. 1986 emend. Humphry et al. 2003		authority
+10	Cellvibrio (ex Winogradsky 1929) Blackall et al. 1986 emend. Suarez et al. 2014		authority
+10	Cellvibrio		scientific name
+10	"Cellvibrio" Winogradsky 1929		authority
+11	"Cellulomonas gilvus" (Hulcher and King 1958) Christopherson et al. 2013		authority
+11	Cellulomonas gilvus		scientific name
+11	"Cellvibrio gilvus" Hulcher and King 1958		authority
+11	Cellvibrio gilvus		synonym
+13	Dictyoglomus Saiki et al. 1985		authority
+13	Dictyoglomus		scientific name
+14	Dictyoglomus thermophilum Saiki et al. 1985		authority
+14	Dictyoglomus thermophilum		scientific name
+16	Methyliphilus		equivalent name
+16	Methylophilus Jenkins et al. 1987		authority
+16	Methylophilus		scientific name
+17	Methyliphilus methylitrophus		equivalent name
+17	Methyliphilus methylotrophus		equivalent name
+17	Methylophilus methylitrophus		equivalent name
+17	Methylophilus methylotrophus Jenkins et al. 1987		authority
+17	Methylophilus methylotrophus		scientific name
+17	Methylophilus sp. CBMB147		includes
+17	Methylotrophus methylophilus		synonym
+18	Pelobacter Schink and Pfennig 1983		authority
+18	Pelobacter		scientific name
+19	Pelobacter carbinolicus Schink 1984		authority
+19	Pelobacter carbinolicus		synonym
+19	Syntrophotalea carbinolica (Schink 1984) Waite et al. 2020		authority
+19	Syntrophotalea carbinolica		scientific name
+20	Phenylobacterium Lingens et al. 1985 emend. Abraham et al. 2008		authority
+20	Phenylobacterium Lingens et al. 1985 emend. Kanso and Patel 2004		authority
+20	Phenylobacterium Lingens et al. 1985 emend. Oh and Roh 2012		authority
+20	Phenylobacterium Lingens et al. 1985 emend. Tiago et al. 2005		authority
+20	Phenylobacterium		scientific name
+21	Phenylobacterium immobile Lingens et al. 1985		authority
+21	Phenylobacterium immobile		scientific name
+22	Shewanella MacDonell and Colwell 1986		authority
+22	Shewanella		scientific name
+23	Alteromonas colwelliana		synonym
+23	Alteromonas colwelliana Weiner et al. 1988		authority
+23	Shewanella affinis Ivanova et al. 2004		authority
+23	Shewanella affinis		synonym
+23	Shewanella colwelliana		scientific name
+23	Shewanella colwelliana (Weiner et al. 1988) Coyne et al. 1990 emend. Thorell et al. 2019		authority
+24	Alteromonas putrefaciens (ex Derby and Hammer) Lee et al. 1981		authority
+24	Alteromonas putrefaciens		synonym
+24	"Pseudomonas putrefaciens" (Derby and Hammer) Long and Hammer 1941		authority
+24	Pseudomonas putrefaciens		synonym
+24	Shewanella putrefaciens (Lee et al. 1981) MacDonell and Colwell 1986 emend. Thorell et al. 2019		authority
+24	Shewanella putrefaciens		scientific name
+25	Alteromonas hanedai Jensen et al. 1981		authority
+25	Alteromonas hanedai		synonym
+25	Shewanella hanedai (Jensen et al. 1981) MacDonell and Colwell 1986		authority
+25	Shewanella hanedai		scientific name
+27	halophilic eubacterium NRCC 41227		scientific name
+27	halophilic eubacterium (NRCC 41227)		synonym
+27	halophilic eubacterium NRCC41227		synonym
+28	halophilic eubacterium		scientific name
+29	fruiting gliding bacteria		genbank common name
+29	Myxobacteria		synonym
+29	Myxococcales		scientific name
+29	Myxococcales Tchan et al. 1948		authority
+29	The Myxobacteria		synonym
+31	Myxococcaceae Jahn et al. 1924 (Approved Lists 1980) emend. Lang et al. 2015		authority
+31	Myxococcaceae		scientific name
+32	Myxococcus		scientific name
+32	Myxococcus Thaxter 1892 emend. Lang and Stackebrandt 2009		authority
+33	"Micrococcus fulvus" Cohn 1875		authority
+33	Micrococcus fulvus		synonym
+33	Myxococcus fulvus (Cohn 1875) Jahn 1911		authority
+33	Myxococcus fulvus		scientific name
+34	Myxococcus xanthus Beebe 1941		authority
+34	Myxococcus xanthus retron Mx162		includes
+34	Myxococcus xanthus retron Mx65		includes
+34	Myxococcus xanthus		scientific name
+35	"Chondrococcus macrosporus" Krzemieniewska and Krzemieniewski 1926		authority
+35	Chondrococcus macrosporus		synonym
+35	Corallococcus macrosporus Reichenbach 2007		authority
+35	Corallococcus macrosporus		scientific name
+35	Myxococcus macrosporus (Krzemieniewska and Krzemieniewski 1926) Zahler and McCurdy 1974 (Approved Lists 1980)		authority
+35	Myxococcus macrosporus		synonym
+38	Angiococcus disciformis		synonym
+38	Angiococcus disciformis (Thaxter 1904) Hook et al. 1980		authority
+38	"Angiococcus disciformis" (Thaxter 1904) Jahn 1924		authority
+38	Archangium disciforme		scientific name
+38	Archangium disciforme (Thaxter 1904) Lang et al. 2015		authority
+38	Cystobacter disciformis		synonym
+38	"Cystobacter disciformis" (Thaxter 1904) Brockman and McCurdy 1989		authority
+38	Myxococcus disciformis		synonym
+38	Myxococcus disciformis Thaxter 1904 (Approved Lists 1980)		authority
+39	Archangiaceae Jahn et al. 1924 (Approved Lists 1980) emend. Lang et al. 2015		authority
+39	Archangiaceae		scientific name
+39	Cystobacteraceae McCurdy 1970 (Approved Lists 1980) emend. Awal et al. 2017		authority
+39	Cystobacteraceae		synonym
+40	Stigmatella Berkeley and Curtis 1875		authority
+40	Stigmatella		scientific name
+41	"Chondromyces aurantiacus" (Berkeley and Curtis) Thaxter 1892		authority
+41	Chondromyces aurantiacus		synonym
+41	Stigmatella aurantiaca Berkeley and Curtis 1875		authority
+41	Stigmatella aurantiaca		scientific name
+42	Cystobacter Schroeter 1886		authority
+42	Cystobacter		scientific name
+43	Cystobacter fuscus Schroeter 1886		authority
+43	Cystobacter fuscus		scientific name
+43	"Polyangium fuscum" (Schroeter 1886) Thaxter 1904		authority
+43	Polyangium fuscum		synonym
+44	Melittangium Jahn 1924		authority
+44	Melittangium		scientific name
+45	Chondromyces gracilipes		synonym
+45	"Chondromyces gracilipes" Thaxter 1897		authority
+45	Chondromyces lichenicolus		synonym
+45	"Chondromyces lichenicolus" Thaxter 1892		authority
+45	"Chondromyces minor" Krzemieniewska and Krzemieniewski 1930		authority
+45	Chondromyces minor		synonym
+45	Melittangium lichenicola		scientific name
+45	Melittangium lichenicola (Thaxter 1892) McCurdy 1971		authority
+45	Podangium gracilipes		synonym
+45	"Podangium gracilipes" (Thaxter 1897) Jahn 1924		authority
+45	Podangium lichenicolum		synonym
+45	"Podangium lichenicolum" (Thaxter 1892) Jahn 1924		authority
+47	Angiococcus (ex Jahn 1924) Hook et al. 1980 emend. Awal et al. 2017		authority
+47	"Angiococcus" Jahn 1924		authority
+47	Angiococcus		synonym
+47	Archangium Jahn 1924 (Approved Lists 1980) emend. Awal et al. 2017		authority
+47	Archangium Jahn 1924 (Approved Lists 1980) Lang et al. 2015		authority
+47	Archangium		scientific name
+48	Archangium gephyra Jahn 1924 (Approved Lists 1980) emend. Lang et al. 2015		authority
+48	Archangium gephyra		scientific name
+48	"Chondrococcus cerebriformis" (Kofler) Jahn 1924		authority
+48	Chondrococcus cerebriformis		synonym
+48	"Chondromyces serpens" Quehl 1906		authority
+48	Chondromyces serpens		synonym
+48	"Myxococcus cerebriformis" Kofler 1913		authority
+48	Myxococcus cerebriformis		synonym
+49	Polyangiaceae Jahn 1924		authority
+49	Polyangiaceae		scientific name
+49	Sorangiaceae		includes
+49	"Sorangiaceae" Jahn 1924		authority
+50	Chondromyces Berkeley and Curtis 1874		authority
+50	Chondromyces		scientific name
+50	Myxobotrys		synonym
+50	"Myxobotrys" Zukal 1896		authority
+50	"Polycephalum" Kalchbrenner and Cooke 1880		authority
+50	Polycephalum		synonym
+51	Chondromyces apiculatus		scientific name
+51	Chondromyces apiculatus Thaxter 1897		authority
+52	Chondromyces crocatus Berkeley and Curtis 1874		authority
+52	Chondromyces crocatus		scientific name
+52	Myxobotrys variabilis		synonym
+52	"Myxobotrys variabilis" Zukal 1896		authority
+53	Nannocystis Reichenbach 1970		authority
+53	Nannocystis		scientific name
+54	Nannocystis exedens Reichenbach 1970		authority
+54	Nannocystis exedens		scientific name
+55	Polyangium Link 1809		authority
+55	Polyangium		scientific name
+56	Polyangium cellulosum (ex Imshenetski and Solntseva 1936) Brockman 1989		authority
+56	Polyangium cellulosum		synonym
+56	Polyangium compositum		synonym
+56	"Polyangium compositum" Thaxter 1904		authority
+56	Sorangium cellulosum (Brockman 1989) Reichenbach 2007		authority
+56	"Sorangium cellulosum" (Imshenetski and Solntseva 1936) Imshenetski and Solntseva 1937		authority
+56	Sorangium cellulosum		scientific name
+56	"Sorangium compositum" Jahn 1924		authority
+56	"Sorangium compositum" Krzemieniewska and Krzemieniewski 1937		authority
+56	Sorangium compositum		synonym
+56	"Sorangium nigrescens" Krzemieniewska and Krzemieniewski 1937		authority
+56	Sorangium nigrescens		synonym
+56	"Sorangium nigrum" Krzemieniewska and Krzemieniewski 1937		authority
+56	Sorangium nigrum		synonym
+57	Polyangium sp.		scientific name
+59	Vitreoscilla Pringsheim 1949		authority
+59	Vitreoscilla		scientific name
+60	Vitreoscilla sp.		scientific name
+61	Vitreoscilla stercoraria Pringsheim 1951 (Approved Lists 1980) emend. Strohl et al. 1986		authority
+61	Vitreoscilla stercoraria		scientific name
+62	Vitreoscilla beggiatoides Pringsheim 1949 (Approved Lists 1980) emend. Strohl et al. 1986		authority
+62	Vitreoscilla beggiatoides		scientific name
+63	Vitreoscilla filiformis (ex Pringsheim 1951) Strohl et al. 1986		authority
+63	"Vitreoscilla filiformis" Pringsheim 1951		authority
+63	Vitreoscilla filiformis		scientific name

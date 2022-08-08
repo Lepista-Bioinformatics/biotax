@@ -1,0 +1,15 @@
+[package]
+name = "biotax"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at 
+# https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+actix-web = "4"
+async-trait = "0.1.57"
+runtime_injector_actix = "0.2.0"
+csv = "1.1"
+futures = "0.3"
+serde = { version = "1.0", features = ["derive"] }
