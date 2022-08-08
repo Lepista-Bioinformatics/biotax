@@ -7,7 +7,7 @@ use crate::{
 
 #[get("/{taxid}")]
 async fn resolve_taxid(
-    path: web::Path<i64>,
+    taxid: web::Path<i64>,
     taxon_fetching_repo: web::Data<Box<dyn TaxonFetching>>,
 ) -> Result<impl Responder> {
     // TODO: Move all dependencies to dedicated injector. See the example of
@@ -15,10 +15,11 @@ async fn resolve_taxid(
     // TODO: https://www.vultr.com/docs/building-rest-apis-in-rust-with-actix-web/
 
     // Try to fetch taxid
-    let taxid = path.into_inner();
-    let response =
-        get_taxon_list_from_taxid(taxid, &*taxon_fetching_repo.into_inner())
-            .await;
+    let response = get_taxon_list_from_taxid(
+        taxid.into_inner(),
+        &*taxon_fetching_repo.into_inner(),
+    )
+    .await;
 
     if response.is_err() {
         return Err(ErrorBadRequest(response.unwrap_err()));
