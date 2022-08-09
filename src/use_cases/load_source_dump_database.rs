@@ -1,7 +1,7 @@
-use std::collections::BTreeMap;
+use std::{collections::BTreeMap, fmt::Error};
 
 use crate::domain::dtos::taxon::TaxonDTO;
-use csv::{Error, ReaderBuilder};
+use csv::ReaderBuilder;
 
 pub type TaxonDatabase = BTreeMap<String, Vec<TaxonDTO>>;
 
@@ -16,16 +16,15 @@ pub fn load_source_dump_database(
         .from_path(source_data_frame);
 
     if reader.is_err() {
-        return Err(reader.unwrap_err());
+        return Err(Error);
     }
 
     let mut taxa: TaxonDatabase = TaxonDatabase::new();
 
-    //for line in reader.unwrap().records() {
-    if let Some(line) = reader.unwrap().records().next() {
+    for line in reader.unwrap().records() {
         // Check errors in line response
         if line.is_err() {
-            return Err(line.unwrap_err());
+            return Err(Error);
         }
 
         // Unpack records pieces from line content

@@ -6,24 +6,21 @@ use crate::{
     use_cases::load_source_dump_database::TaxonDatabase,
 };
 use async_trait::async_trait;
+use shaku::Component;
 
-#[derive(Clone)]
-pub struct TaxonFetchingMemBdRepository {
+#[derive(Clone, Component)]
+#[shaku(interface = TaxonFetching)]
+pub struct TaxonFetchingMemDbRepository {
+    #[shaku(default)]
     pub db: TaxonDatabase,
 }
 
-impl TaxonFetchingMemBdRepository {
-    pub fn new(db: TaxonDatabase) -> Self {
-        TaxonFetchingMemBdRepository { db: db.clone() }
-    }
-}
-
 #[async_trait]
-impl TaxonFetching for TaxonFetchingMemBdRepository {
+impl TaxonFetching for TaxonFetchingMemDbRepository {
     // This method filters the the database records and return an array of
     // taxon methods.
     async fn get(&self, tax_id: i64) -> Result<Vec<TaxonDTO>, MappedErrors> {
-        if !tax_id.gt(&1) {
+        if !tax_id.ge(&1) {
             return Err(MappedErrors::new(
                 "Taxid should be greater than 1",
                 None,
@@ -47,7 +44,7 @@ impl TaxonFetching for TaxonFetchingMemBdRepository {
 
 #[cfg(test)]
 mod test {
-    use crate::adapters::repositories::mem_db::taxon_fetching::TaxonFetchingMemBdRepository;
+    use crate::adapters::repositories::mem_db::taxon_fetching::TaxonFetchingMemDbRepository;
     use crate::domain::entities::taxon_fetching::TaxonFetching;
     use crate::use_cases::load_source_dump_database::load_source_dump_database;
     use futures::executor::block_on;
@@ -61,7 +58,7 @@ mod test {
 
         assert_eq!(db.is_err(), false);
 
-        let repo = TaxonFetchingMemBdRepository::new(db.unwrap());
+        let repo = TaxonFetchingMemDbRepository { db: db.unwrap() };
 
         match block_on(repo.get(106)) {
             Ok(res) => assert_eq!(res.len(), 0),

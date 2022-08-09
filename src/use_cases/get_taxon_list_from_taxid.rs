@@ -24,9 +24,7 @@ mod test {
     #[test]
     fn get_taxon_list_from_taxid_test() {
         // Load mock database
-        let db = load_source_dump_database(
-            "/home/samuel-elias/study-projects/rust/biotax/src/assets/names-tab-200.dmp"
-        );
+        let db = load_source_dump_database("assets/names-tab-200.dmp");
 
         assert_eq!(db.is_err(), false);
 

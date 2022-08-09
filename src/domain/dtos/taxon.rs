@@ -1,6 +1,6 @@
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
-#[derive(Clone, Debug, Serialize)]
+#[derive(Clone, Debug, Deserialize, Serialize)]
 pub struct TaxonDTO {
     pub tax_id: i64,
     pub tax_name: String,
@@ -31,7 +31,5 @@ mod test {
         };
 
         assert_eq!(taxon.tax_id, tax_id);
-        //assert_eq!(taxon.tax_name, tax_name);
-        //assert_eq!(taxon.name_class, name_class);
     }
 }
