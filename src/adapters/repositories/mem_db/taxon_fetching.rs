@@ -14,7 +14,7 @@ pub struct TaxonFetchingMemBdRepository {
 
 impl TaxonFetchingMemBdRepository {
     pub fn new(db: TaxonDatabase) -> Self {
-        TaxonFetchingMemBdRepository { db }
+        TaxonFetchingMemBdRepository { db: db.clone() }
     }
 }
 

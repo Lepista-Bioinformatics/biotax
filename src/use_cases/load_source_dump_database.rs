@@ -21,7 +21,8 @@ pub fn load_source_dump_database(
 
     let mut taxa: TaxonDatabase = TaxonDatabase::new();
 
-    for line in reader.unwrap().records() {
+    //for line in reader.unwrap().records() {
+    if let Some(line) = reader.unwrap().records().next() {
         // Check errors in line response
         if line.is_err() {
             return Err(line.unwrap_err());
@@ -29,17 +30,20 @@ pub fn load_source_dump_database(
 
         // Unpack records pieces from line content
         let record = line.unwrap();
+
         let tax_id = record[0].parse::<i64>().to_owned().unwrap();
-        let tax_name = record[1].parse::<String>().to_owned().unwrap();
-        let unique_name = record[2].parse::<String>().to_owned().unwrap();
-        let name_class = record[3].parse::<String>().to_owned().unwrap();
+        let tax_name = record[1].parse::<String>().unwrap().to_owned();
+        let unique_name = record[2].parse::<String>().unwrap().to_owned();
+        let name_class = record[3].parse::<String>().unwrap().to_owned();
+
+        let new_tax_name = tax_name.as_str().to_owned();
 
         // Build taxon element
         let mut taxon = TaxonDTO {
             tax_id,
-            tax_name,
+            tax_name: new_tax_name,
             unique_name: None,
-            name_class,
+            name_class: name_class,
         };
 
         if unique_name != "" {
