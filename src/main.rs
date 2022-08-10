@@ -32,7 +32,7 @@ pub async fn main() -> std::io::Result<()> {
     // Collect database path from environment variable.
     let db_file_path = match var_os("DATABASE_PATH") {
         Some(path) => path.into_string().unwrap(),
-        None => String::from("/home/samuel-elias/study-projects/rust/biotax/src/assets/names-tab-200.dmp"),
+        None => String::from("assets/names-tab-200.dmp"),
     };
 
     // Load database from `DATABASE_PATH` environment variable.
