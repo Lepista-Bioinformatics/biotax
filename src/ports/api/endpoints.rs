@@ -1,4 +1,6 @@
-use actix_web::{error::ErrorBadRequest, get, web, Responder, Result};
+use actix_web::{
+    error::ErrorBadRequest, get, web, HttpResponse, Responder, Result,
+};
 
 use crate::{
     domain::entities::taxon_fetching::TaxonFetching,
@@ -6,6 +8,11 @@ use crate::{
     use_cases::get_taxon_list_from_taxid::get_taxon_list_from_taxid,
 };
 use shaku_actix::Inject;
+
+#[get("/health")]
+pub async fn health() -> Result<HttpResponse> {
+    Ok(HttpResponse::Ok().body("success".to_string()))
+}
 
 #[get("/taxids/{taxid}")]
 async fn resolve_taxid(
