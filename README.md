@@ -1,6 +1,6 @@
 # Rust Taxids API - A simple but efficient server for GenBank Taxids
 
-To start a server using a Docker container engine see three simple steps:
+To start the server using Docker container engine see three simple steps:
 
 1. Build a rust binary:
 
