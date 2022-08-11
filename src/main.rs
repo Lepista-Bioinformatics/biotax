@@ -1,12 +1,14 @@
 mod adapters;
 mod domain;
 mod ports;
+mod settings;
 mod use_cases;
 
 use actix_web::middleware::Logger;
 use actix_web::{App, HttpServer};
 use core::panic;
 use env_logger;
+use log::info;
 use std::{
     env::{set_var, var_os},
     sync::Arc,
@@ -29,13 +31,13 @@ pub async fn main() -> std::io::Result<()> {
     set_var("RUST_BACKTRACE", "full");
     env_logger::init();
 
-    // Collect database path from environment variable.
+    info!("Collect database path from environment variable.");
     let db_file_path = match var_os("DATABASE_PATH") {
         Some(path) => path.into_string().unwrap(),
         None => String::from("assets/names-tab-200.dmp"),
     };
 
-    // Load database from `DATABASE_PATH` environment variable.
+    info!("Load database from `DATABASE_PATH` environment variable.");
     let db_result = load_source_dump_database(db_file_path.as_str());
 
     if db_result.is_err() {
@@ -45,7 +47,7 @@ pub async fn main() -> std::io::Result<()> {
         )
     }
 
-    // Start a module for dependency injection.
+    info!("Start a module for dependency injection");
     let module = Arc::new(
         TaxonFetchingModule::builder()
             .with_component_parameters::<TaxonFetchingMemDbRepository>(
@@ -56,7 +58,7 @@ pub async fn main() -> std::io::Result<()> {
             .build(),
     );
 
-    // Configure the server configuration.
+    info!("Set the server configuration.");
     let server = HttpServer::new(move || {
         App::new()
             .wrap(Logger::default())
@@ -66,6 +68,6 @@ pub async fn main() -> std::io::Result<()> {
             .service(health)
     });
 
-    // Fire the server.
+    info!("Fire the server.");
     server.bind(("0.0.0.0", 8080))?.run().await
 }

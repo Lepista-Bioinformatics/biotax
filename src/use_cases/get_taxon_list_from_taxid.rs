@@ -3,7 +3,6 @@ use crate::domain::{
     utils::errors::MappedErrors,
 };
 
-#[allow(dead_code)]
 pub async fn get_taxon_list_from_taxid(
     tax_id: i64,
     taxon_fetching_repo: Box<&dyn TaxonFetching>,

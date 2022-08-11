@@ -2,10 +2,10 @@ use std::{collections::BTreeMap, fmt::Error};
 
 use crate::domain::dtos::taxon::TaxonDTO;
 use csv::ReaderBuilder;
+use log::info;
 
 pub type TaxonDatabase = BTreeMap<String, Vec<TaxonDTO>>;
 
-#[allow(dead_code)]
 pub fn load_source_dump_database(
     source_data_frame: &str,
 ) -> Result<TaxonDatabase, Error> {
@@ -29,18 +29,19 @@ pub fn load_source_dump_database(
 
         // Unpack records pieces from line content
         let record = line.unwrap();
-
         let tax_id = record[0].parse::<i64>().to_owned().unwrap();
         let tax_name = record[1].parse::<String>().unwrap().to_owned();
         let unique_name = record[2].parse::<String>().unwrap().to_owned();
         let name_class = record[3].parse::<String>().unwrap().to_owned();
 
-        let new_tax_name = tax_name.as_str().to_owned();
+        if name_class != "scientific name" {
+            continue;
+        }
 
         // Build taxon element
         let mut taxon = TaxonDTO {
             tax_id,
-            tax_name: new_tax_name,
+            tax_name: tax_name,
             unique_name: None,
             name_class: name_class,
         };
@@ -60,6 +61,8 @@ pub fn load_source_dump_database(
         new_value.push(taxon);
         taxa.insert(tax_id.to_string(), new_value);
     }
+
+    info!("Loaded {} records to memory.", taxa.len());
 
     Ok(taxa)
 }
