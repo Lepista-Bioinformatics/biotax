@@ -1,7 +1,8 @@
 use std::fmt::Result as FmResult;
 use std::fmt::{Debug, Display, Formatter};
 
-use crate::domain::{dtos::taxon::TaxonDTO, utils::errors::MappedErrors};
+use crate::domain::dtos::taxon::ExtendedTaxonDTO;
+use crate::domain::utils::errors::MappedErrors;
 use async_trait::async_trait;
 use shaku::Interface;
 
@@ -9,7 +10,10 @@ use shaku::Interface;
 // should be further implemented.
 #[async_trait]
 pub trait TaxonFetching: Interface + Send + Sync {
-    async fn get(&self, tax_id: i64) -> Result<Vec<TaxonDTO>, MappedErrors>;
+    async fn get(
+        &self,
+        tax_id: i64,
+    ) -> Result<Vec<ExtendedTaxonDTO>, MappedErrors>;
 }
 
 impl Display for dyn TaxonFetching {

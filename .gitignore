@@ -1,3 +1,7 @@
 /target
 /Cargo.lock
 names-tab.dmp
+
+# Both are known artifacts created on make reference database
+genbank_taxonomies.db
+names-nodes-division.tsv

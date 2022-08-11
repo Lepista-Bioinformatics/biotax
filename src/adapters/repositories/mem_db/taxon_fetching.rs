@@ -1,6 +1,6 @@
 use crate::{
     domain::{
-        dtos::taxon::TaxonDTO, entities::taxon_fetching::TaxonFetching,
+        dtos::taxon::ExtendedTaxonDTO, entities::taxon_fetching::TaxonFetching,
         utils::errors::MappedErrors,
     },
     use_cases::load_source_dump_database::TaxonDatabase,
@@ -19,7 +19,10 @@ pub struct TaxonFetchingMemDbRepository {
 impl TaxonFetching for TaxonFetchingMemDbRepository {
     // This method filters the the database records and return an array of
     // taxon methods.
-    async fn get(&self, tax_id: i64) -> Result<Vec<TaxonDTO>, MappedErrors> {
+    async fn get(
+        &self,
+        tax_id: i64,
+    ) -> Result<Vec<ExtendedTaxonDTO>, MappedErrors> {
         if !tax_id.ge(&1) {
             return Err(MappedErrors::new(
                 "Taxid should be greater than 1",
@@ -52,9 +55,9 @@ mod test {
     #[test]
     fn taxon_list_test() {
         // Load mock database
-        let db = load_source_dump_database(
+        let db = block_on(load_source_dump_database(
             "/home/samuel-elias/study-projects/rust/biotax/src/assets/names-tab-200.dmp"
-        );
+        ));
 
         assert_eq!(db.is_err(), false);
 

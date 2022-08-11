@@ -1,7 +1,8 @@
 use std::fmt::Result as FmResult;
 use std::fmt::{Debug, Display, Formatter};
 
-use crate::domain::{dtos::taxon::TaxonDTO, utils::errors::MappedErrors};
+use crate::domain::dtos::taxon::ExtendedTaxonDTO;
+use crate::domain::utils::errors::MappedErrors;
 use async_trait::async_trait;
 use pickledb::PickleDb;
 use shaku::Interface;
@@ -13,8 +14,9 @@ pub trait TaxonRegistration: Interface + Send + Sync {
     async fn get_or_create(
         &self,
         db: &mut PickleDb,
-        taxon: TaxonDTO,
-    ) -> Result<TaxonDTO, MappedErrors>;
+        tax_id: String,
+        taxon: Vec<ExtendedTaxonDTO>,
+    ) -> Result<String, MappedErrors>;
 }
 
 impl Display for dyn TaxonRegistration {

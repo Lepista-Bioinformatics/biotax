@@ -1,8 +1,10 @@
 {
     "cSpell.words": [
         "dataframe",
+        "groupby",
         "pickledb",
         "shaku",
+        "structopt",
         "taxids"
     ]
 }

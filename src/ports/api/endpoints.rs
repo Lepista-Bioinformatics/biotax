@@ -1,12 +1,16 @@
+extern crate biotax;
+
 use actix_web::{
     error::ErrorBadRequest, get, web, HttpResponse, Responder, Result,
 };
 
-use crate::{
+use biotax::{
     domain::entities::taxon_fetching::TaxonFetching,
-    ports::api::modules::TaxonFetchingModule,
     use_cases::get_taxon_list_from_taxid::get_taxon_list_from_taxid,
 };
+
+use crate::modules::TaxonFetchingModule;
+
 use shaku_actix::Inject;
 
 #[get("/health")]

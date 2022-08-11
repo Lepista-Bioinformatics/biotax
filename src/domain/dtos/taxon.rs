@@ -8,28 +8,18 @@ pub struct TaxonDTO {
     pub name_class: String,
 }
 
-// ? --------------------------------------------------------------------------
-// ? Tests
-// ? --------------------------------------------------------------------------
+#[derive(Clone, Debug, Deserialize, Serialize)]
+pub struct ExtendedTaxonDTO {
+    // This is the same columns from the names.dmp
+    pub tax_id: i64,
+    pub tax_name: String,
+    pub unique_name: Option<String>,
+    pub name_class: String,
 
-#[cfg(test)]
-mod test {
-    use super::TaxonDTO;
+    // This columns exists on nodes.dmp
+    pub parent: i64,
+    pub rank: String,
 
-    #[test]
-    fn create_taxon() {
-        let tax_id: i64 = 5502;
-        let tax_name = String::from("Curvularia");
-        let unique_name = String::from("null");
-        let name_class = String::from("scientific name");
-
-        let taxon = TaxonDTO {
-            tax_id,
-            tax_name,
-            unique_name: Some(unique_name),
-            name_class,
-        };
-
-        assert_eq!(taxon.tax_id, tax_id);
-    }
+    // This columns exists on division.dmp
+    pub division: String,
 }

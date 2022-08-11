@@ -1,8 +1,6 @@
-mod adapters;
-mod domain;
-mod ports;
-mod settings;
-mod use_cases;
+extern crate biotax;
+mod endpoints;
+mod modules;
 
 use actix_web::middleware::Logger;
 use actix_web::{App, HttpServer};
@@ -14,15 +12,14 @@ use std::{
     sync::Arc,
 };
 
-use crate::adapters::repositories::mem_db::taxon_fetching::TaxonFetchingMemDbRepositoryParameters;
-use crate::{
+use biotax::adapters::repositories::mem_db::taxon_fetching::TaxonFetchingMemDbRepositoryParameters;
+use biotax::{
     adapters::repositories::mem_db::taxon_fetching::TaxonFetchingMemDbRepository,
-    ports::api::{
-        endpoints::{health, resolve_taxid},
-        modules::TaxonFetchingModule,
-    },
     use_cases::load_source_dump_database::load_source_dump_database,
 };
+
+use crate::endpoints::{health, resolve_taxid};
+use crate::modules::TaxonFetchingModule;
 
 #[actix_web::main]
 pub async fn main() -> std::io::Result<()> {
@@ -38,7 +35,7 @@ pub async fn main() -> std::io::Result<()> {
     };
 
     info!("Load database from `DATABASE_PATH` environment variable.");
-    let db_result = load_source_dump_database(db_file_path.as_str());
+    let db_result = load_source_dump_database(db_file_path.as_str()).await;
 
     if db_result.is_err() {
         panic!(
