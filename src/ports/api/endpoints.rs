@@ -5,7 +5,7 @@ use actix_web::{
 };
 
 use biotax::{
-    domain::entities::taxon_fetching::TaxonFetching,
+    domain::entities::taxon_fetching::{GetResponseKind, TaxonFetching},
     use_cases::get_taxon_list_from_taxid::get_taxon_list_from_taxid,
 };
 
@@ -22,13 +22,15 @@ pub async fn health() -> Result<HttpResponse> {
 async fn resolve_taxid(
     taxid: web::Path<i64>,
     repo: Inject<TaxonFetchingModule, dyn TaxonFetching>,
-) -> Result<impl Responder> {
-    let response =
+) -> impl Responder {
+    let result =
         get_taxon_list_from_taxid(taxid.into_inner(), Box::from(&*repo)).await;
 
-    if response.is_err() {
-        return Err(ErrorBadRequest(response.unwrap_err()));
+    if result.is_err() {
+        return Err(ErrorBadRequest(result.unwrap_err()));
     }
 
-    Ok(web::Json(response.unwrap()))
+    let get_response: GetResponseKind = result.unwrap().into();
+
+    Ok(web::Json(get_response))
 }

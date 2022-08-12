@@ -4,18 +4,16 @@ mod modules;
 
 use actix_web::middleware::Logger;
 use actix_web::{App, HttpServer};
-use core::panic;
+use biotax::adapters::repositories::kv_db::taxon_fetching::{
+    CustomPickleDb, TaxonFetchingKvDbRepository,
+    TaxonFetchingKvDbRepositoryParameters,
+};
 use env_logger;
 use log::info;
+use pickledb::{PickleDb, SerializationMethod};
 use std::{
     env::{set_var, var_os},
     sync::Arc,
-};
-
-use biotax::adapters::repositories::mem_db::taxon_fetching::TaxonFetchingMemDbRepositoryParameters;
-use biotax::{
-    adapters::repositories::mem_db::taxon_fetching::TaxonFetchingMemDbRepository,
-    use_cases::load_source_dump_database::load_source_dump_database,
 };
 
 use crate::endpoints::{health, resolve_taxid};
@@ -35,21 +33,17 @@ pub async fn main() -> std::io::Result<()> {
     };
 
     info!("Load database from `DATABASE_PATH` environment variable.");
-    let db_result = load_source_dump_database(db_file_path.as_str()).await;
-
-    if db_result.is_err() {
-        panic!(
-            "Unexpected error occurred on load database: {}",
-            db_result.unwrap_err()
-        )
-    }
+    info!("{:?}", db_file_path);
+    let readonly_db =
+        PickleDb::load_read_only(db_file_path, SerializationMethod::Json)
+            .unwrap();
 
     info!("Start a module for dependency injection");
     let module = Arc::new(
         TaxonFetchingModule::builder()
-            .with_component_parameters::<TaxonFetchingMemDbRepository>(
-                TaxonFetchingMemDbRepositoryParameters {
-                    db: db_result.unwrap().clone(),
+            .with_component_parameters::<TaxonFetchingKvDbRepository>(
+                TaxonFetchingKvDbRepositoryParameters {
+                    db: CustomPickleDb { conn: readonly_db },
                 },
             )
             .build(),

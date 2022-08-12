@@ -1,11 +1,11 @@
 extern crate biotax;
 
-use biotax::adapters::repositories::mem_db::taxon_fetching::TaxonFetchingMemDbRepository;
+use biotax::adapters::repositories::kv_db::taxon_fetching::TaxonFetchingKvDbRepository;
 use shaku::module;
 
 module! {
     pub TaxonFetchingModule {
-        components = [TaxonFetchingMemDbRepository],
+        components = [TaxonFetchingKvDbRepository],
         providers = []
     }
 }

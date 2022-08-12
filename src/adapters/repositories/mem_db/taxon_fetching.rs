@@ -1,6 +1,6 @@
 use crate::{
     domain::{
-        dtos::taxon::ExtendedTaxonDTO, entities::taxon_fetching::TaxonFetching,
+        entities::taxon_fetching::{GetResponseKind, TaxonFetching},
         utils::errors::MappedErrors,
     },
     use_cases::load_source_dump_database::TaxonDatabase,
@@ -19,10 +19,7 @@ pub struct TaxonFetchingMemDbRepository {
 impl TaxonFetching for TaxonFetchingMemDbRepository {
     // This method filters the the database records and return an array of
     // taxon methods.
-    async fn get(
-        &self,
-        tax_id: i64,
-    ) -> Result<Vec<ExtendedTaxonDTO>, MappedErrors> {
+    async fn get(&self, tax_id: i64) -> Result<GetResponseKind, MappedErrors> {
         if !tax_id.ge(&1) {
             return Err(MappedErrors::new(
                 "Taxid should be greater than 1",
@@ -34,45 +31,9 @@ impl TaxonFetching for TaxonFetchingMemDbRepository {
         let records = self.db.get(&tax_id.to_string());
 
         if records.is_none() {
-            return Ok([].to_vec());
+            return Ok(GetResponseKind::NotFound(tax_id));
         }
 
-        Ok(records.unwrap().to_vec())
-    }
-}
-
-// ? --------------------------------------------------------------------------
-// ? Tests
-// ? --------------------------------------------------------------------------
-
-#[cfg(test)]
-mod test {
-    use crate::adapters::repositories::mem_db::taxon_fetching::TaxonFetchingMemDbRepository;
-    use crate::domain::entities::taxon_fetching::TaxonFetching;
-    use crate::use_cases::load_source_dump_database::load_source_dump_database;
-    use futures::executor::block_on;
-
-    #[test]
-    fn taxon_list_test() {
-        // Load mock database
-        let db = block_on(load_source_dump_database(
-            "/home/samuel-elias/study-projects/rust/biotax/src/assets/names-tab-200.dmp"
-        ));
-
-        assert_eq!(db.is_err(), false);
-
-        let repo = TaxonFetchingMemDbRepository { db: db.unwrap() };
-
-        match block_on(repo.get(106)) {
-            Ok(res) => assert_eq!(res.len(), 0),
-            Err(err) => assert_eq!(err.to_string(), ""),
-        };
-
-        match block_on(repo.get(50)) {
-            Ok(res) => assert_eq!(res.len(), 6),
-            Err(err) => assert_eq!(err.to_string(), ""),
-        };
-
-        println!("{:?}", block_on(repo.get(50)));
+        Ok(GetResponseKind::Found(records.unwrap().to_vec()))
     }
 }

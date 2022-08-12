@@ -1,25 +1,44 @@
 use crate::domain::{
-    dtos::taxon::TaxonDTO, entities::taxon_fetching::TaxonFetching,
+    dtos::taxon::ExtendedTaxonDTO,
+    entities::taxon_fetching::{GetResponseKind, TaxonFetching},
     utils::errors::MappedErrors,
 };
 use async_trait::async_trait;
 use pickledb::PickleDb;
+use shaku::Component;
 
-pub struct TaxonFetchingKvDbRepository;
+pub struct CustomPickleDb {
+    pub conn: PickleDb,
+}
 
-//#[async_trait]
-//impl TaxonFetching for TaxonFetchingKvDbRepository {
-//    async fn get(
-//        &self,
-//        db: &mut PickleDb,
-//        taxon: TaxonDTO,
-//    ) -> Result<TaxonDTO, MappedErrors> {
-//        let taxon_exists = db.exists("key");
-//
-//        if !taxon_exists {
-//            db.set(&taxon.tax_id.to_string(), &taxon).unwrap();
-//        }
-//
-//        Ok(taxon)
-//    }
-//}
+impl Default for CustomPickleDb {
+    #[allow(unconditional_recursion)]
+    fn default() -> Self {
+        Self::default()
+    }
+}
+
+#[derive(Component)]
+#[shaku(interface = TaxonFetching)]
+pub struct TaxonFetchingKvDbRepository {
+    #[shaku(default)]
+    pub db: CustomPickleDb,
+}
+
+#[async_trait]
+impl TaxonFetching for TaxonFetchingKvDbRepository {
+    async fn get(&self, tax_id: i64) -> Result<GetResponseKind, MappedErrors> {
+        let taxon = self.db.conn.exists(&tax_id.to_string());
+
+        if !taxon {
+            return Ok(GetResponseKind::NotFound(tax_id));
+        }
+
+        Ok(GetResponseKind::Found(
+            self.db
+                .conn
+                .get::<Vec<ExtendedTaxonDTO>>(&tax_id.to_string())
+                .unwrap(),
+        ))
+    }
+}
