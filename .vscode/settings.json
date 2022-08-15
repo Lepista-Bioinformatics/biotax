@@ -1,8 +1,13 @@
 {
     "cSpell.words": [
+        "Arango",
+        "arangodb",
+        "biotax",
         "dataframe",
         "groupby",
         "pickledb",
+        "quicli",
+        "reqwest",
         "shaku",
         "structopt",
         "taxids"

@@ -3,8 +3,11 @@ FROM rust
 COPY src/assets/names-tab.dmp /tmp
 COPY target/release/biotax /bin
 
-ENV DATABASE_PATH=/tmp/names-tab.dmp
+ARG DATABASE_PATH=/tmp/names-tab.dmp
+ENV DATABASE_PATH=${DATABASE_PATH}
+ARG SERVICE_PORT=8080
+ENV SERVICE_PORT=${SERVICE_PORT}
 
-EXPOSE 8080
+EXPOSE ${SERVICE_PORT}
 
 CMD ["/bin/biotax"]

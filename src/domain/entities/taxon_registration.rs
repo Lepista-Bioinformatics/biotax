@@ -4,7 +4,6 @@ use std::fmt::{Debug, Display, Formatter};
 use crate::domain::dtos::taxon::ExtendedTaxonDTO;
 use crate::domain::utils::errors::MappedErrors;
 use async_trait::async_trait;
-use pickledb::PickleDb;
 use shaku::Interface;
 
 // These trait defines two optional methods, `get` and `list`. Both methods
@@ -13,7 +12,6 @@ use shaku::Interface;
 pub trait TaxonRegistration: Interface + Send + Sync {
     async fn get_or_create(
         &self,
-        db: &mut PickleDb,
         tax_id: String,
         taxon: Vec<ExtendedTaxonDTO>,
     ) -> Result<String, MappedErrors>;

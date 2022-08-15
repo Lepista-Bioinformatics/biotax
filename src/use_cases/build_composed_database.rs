@@ -14,7 +14,6 @@ use std::{
 };
 
 use log::{error, info};
-use pickledb::PickleDb;
 
 use super::load_source_dump_database::TaxonDatabase;
 
@@ -23,7 +22,6 @@ pub async fn build_composed_database(
     nodes_file_path: &str,
     division_file_path: &str,
     taxon_registration_repo: &dyn TaxonRegistration,
-    db_connector: &mut PickleDb,
 ) -> Result<bool, MappedErrors> {
     info!("Building reference database");
     let filtered_dataframe = load_reference_dumps(
@@ -59,13 +57,10 @@ pub async fn build_composed_database(
         return Err(MappedErrors::new(&msg, None, None));
     }
 
-    info!("Persisting response to pickle-db");
-    let persistence_response = persist_database(
-        building_response.unwrap(),
-        taxon_registration_repo,
-        db_connector,
-    )
-    .await;
+    info!("Persisting response to database");
+    let persistence_response =
+        persist_database(building_response.unwrap(), taxon_registration_repo)
+            .await;
 
     if persistence_response.is_err() {
         let msg = "Unexpected error detected on persist record to database.";
@@ -80,12 +75,12 @@ pub async fn build_composed_database(
 async fn persist_database(
     taxa: TaxonDatabase,
     taxon_registration_repo: &dyn TaxonRegistration,
-    db_connector: &mut PickleDb,
 ) -> Result<bool, MappedErrors> {
     for (taxid, taxon) in taxa {
-        let registration_response = taxon_registration_repo
-            .get_or_create(db_connector, taxid, taxon)
-            .await;
+        info!("Processing taxid {}", taxid);
+
+        let registration_response =
+            taxon_registration_repo.get_or_create(taxid, taxon).await;
 
         if registration_response.is_err() {
             let msg =

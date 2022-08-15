@@ -1,0 +1,30 @@
+version: "3.7"
+
+# ? ----------------------------------------------------------------------------
+# ? NETWORK DEFINITION
+# ? ----------------------------------------------------------------------------
+networks:
+  biotax_net:
+    ipam:
+      config:
+        - subnet: ${SERVICES_SUBNET}
+
+# ? ----------------------------------------------------------------------------
+# ? SERVICES DEFINITION
+# ? ----------------------------------------------------------------------------
+services:
+
+  biotax_arangodb:
+    container_name: biotax-arangodb
+    image: arangodb:latest
+    restart: on-failure
+    environment:
+      ARANGO_ROOT_PASSWORD: arangodb
+    ports:
+      - ${ARANGODB_SERVICE_PORT}:8529
+    volumes:
+      - ./arangodb/arangodb_data_container:/var/lib/arangodb3
+      - ./arangodb/arangodb_apps_data_container:/var/lib/arangodb3-apps
+    networks:
+      biotax_net:
+        ipv4_address: ${ARANGODB_SERVICE_SUBNET}

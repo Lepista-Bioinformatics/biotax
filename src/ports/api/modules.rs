@@ -1,11 +1,11 @@
 extern crate biotax;
 
-use biotax::adapters::repositories::kv_db::taxon_fetching::TaxonFetchingKvDbRepository;
+//use biotax::adapters::repositories::arango_db::taxon_fetching::TaxonFetchingKvDbRepository;
 use shaku::module;
 
-module! {
-    pub TaxonFetchingModule {
-        components = [TaxonFetchingKvDbRepository],
-        providers = []
-    }
-}
+//module! {
+//    pub TaxonFetchingModule {
+//        components = [TaxonFetchingKvDbRepository],
+//        providers = []
+//    }
+//}
