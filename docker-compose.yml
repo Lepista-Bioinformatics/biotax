@@ -25,6 +25,7 @@ services:
     volumes:
       - ./arangodb/arangodb_data_container:/var/lib/arangodb3
       - ./arangodb/arangodb_apps_data_container:/var/lib/arangodb3-apps
+      - ./artifacts/dumps:/dumps
     networks:
       biotax_net:
         ipv4_address: ${ARANGODB_SERVICE_SUBNET}

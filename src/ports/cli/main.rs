@@ -28,7 +28,7 @@ pub async fn main() -> CliResult {
     env_logger::init();
 
     // Build repository
-    let (user, pass, address) = configure_cli();
+    let (user, pass, address) = get_db_conn_credentials();
 
     let repo = TaxonRegistrationArangoDbRepository {
         //reqwest_client: Client::new(),
@@ -56,7 +56,7 @@ pub async fn main() -> CliResult {
     Ok(())
 }
 
-fn configure_cli() -> (String, String, String) {
+fn get_db_conn_credentials() -> (String, String, String) {
     let arangodb_username = match var_os("ARANGODB_USERNAME") {
         Some(path) => path.into_string().unwrap(),
         None => String::from("root"),

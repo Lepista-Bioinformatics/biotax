@@ -6,4 +6,4 @@ pub const TMP_NAMES_JOINED_DATAFRAME: &str = "names-nodes-division.tsv";
 
 // Define the collection name for the Arango database
 pub const ARANGODB_DATABASE_NAME: &str = "genbank-taxonomy";
-pub const ARANGODB_COLLECTION_NAME: &str = "ranked-names";
+pub const ARANGODB_COLLECTION_NAME: &str = "ranked_names";
